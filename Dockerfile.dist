@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM gliderlabs/alpine:3.3
 
 RUN mkdir /app
 ADD build.tar.gz /app/
