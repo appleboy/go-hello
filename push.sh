@@ -1,3 +1,9 @@
-#!/bin/bash
-docker tag hello-world:latest your_username/hello-world:your_tag
-docker push your_username/hello-world:your_tag
+#!/usr/bin/env bash
+
+if [ $# -ne 2 ]; then
+  >&2 echo "Usage: $0 <author> <tag>"
+  exit 1
+fi
+
+docker tag hello-world:latest $1/hello-world:$2
+docker push $1/hello-world:$2
