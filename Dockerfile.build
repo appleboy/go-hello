@@ -1,7 +1,11 @@
 FROM golang:1.6-alpine
 
+MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+
+RUN apk --update add git
 RUN mkdir -p /tmp/build
 ADD hello-world.go /tmp/build/
 WORKDIR /tmp/build
+RUN go get github.com/gin-gonic/gin
 RUN go build hello-world.go
 CMD tar -czf - hello-world

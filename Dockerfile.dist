@@ -1,5 +1,8 @@
 FROM gliderlabs/alpine:3.3
 
+MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+
 RUN mkdir /app
 ADD build.tar.gz /app/
 ENTRYPOINT /app/hello-world
+EXPOSE 8000
