@@ -14,7 +14,7 @@ import (
 func TestHello(t *testing.T) {
 	type Message struct {
 		Text string
-		Current_Time string
+		CurrentTime string
 	}
 
 	gin.SetMode(gin.TestMode)
