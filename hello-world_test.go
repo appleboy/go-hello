@@ -13,7 +13,7 @@ import (
 
 func TestHello(t *testing.T) {
 	type Message struct {
-		Text string
+		Text        string
 		CurrentTime string
 	}
 
