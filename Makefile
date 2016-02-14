@@ -29,6 +29,7 @@ hello: ${DEPS}
 	GO15VENDOREXPERIMENT=1 go build
 
 test:
+	go get -d
 	go test
 
 clean:
