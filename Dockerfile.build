@@ -6,6 +6,6 @@ RUN apk --update add git
 RUN mkdir -p /tmp/build
 ADD hello-world.go /tmp/build/
 WORKDIR /tmp/build
-RUN go get github.com/gin-gonic/gin
+RUN go get -d
 RUN go build hello-world.go
 CMD tar -czf - hello-world

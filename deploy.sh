@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 output() {
   printf "\E[0;33;40m"
