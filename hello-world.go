@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"os"
 	"time"
 )
 
@@ -15,7 +16,11 @@ func rootHandler(context *gin.Context) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
 	router := gin.Default()
+	if port == "" {
+		port = "8000"
+	}
 	router.GET("/", rootHandler)
-	router.Run(":8000")
+	router.Run(":" + port)
 }

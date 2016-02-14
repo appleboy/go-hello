@@ -6,6 +6,26 @@ hello world for go lang example.
 
 ## Getting Started
 
+Install dependencies package.
+
+```bash
+$ go get -d
+```
+
+Start web server and default port is `8000`
+
+```bash
+$ go run hello-world.go
+```
+
+You can change default port via add `PORT` variable.
+
+```bash
+$ PORT=8001 go run hello-world.go
+```
+
+## Using Docker
+
 Please install [Docker](https://docs.docker.com/machine/get-started/) first and run the following command to start server.
 
 ```bash
