@@ -126,5 +126,9 @@ c8c863a62423: Image already exists
 ## Testing
 
 ```bash
-make test
+$ make test
+go get -d
+go test
+PASS
+ok    github.com/appleboy/go-hello  0.012s
 ```
