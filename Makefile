@@ -22,8 +22,8 @@ ifeq ($(tag),)
 	@echo "Usage: make $@ tag=<tag>"
 	@exit 1
 endif
-	# docker tag $(PRODUCTION_IMAGE):latest $(DEPLOY_ACCOUNT)/$(PRODUCTION_IMAGE):$(tag)
-	# docker push $(DEPLOY_ACCOUNT)/$(PRODUCTION_IMAGE):$(tag)
+	docker tag $(PRODUCTION_IMAGE):latest $(DEPLOY_ACCOUNT)/$(PRODUCTION_IMAGE):$(tag)
+	docker push $(DEPLOY_ACCOUNT)/$(PRODUCTION_IMAGE):$(tag)
 
 hello: ${DEPS}
 	GO15VENDOREXPERIMENT=1 go build
