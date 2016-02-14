@@ -34,8 +34,79 @@ Check docker images:
 ```bash
 $ docker images
 REPOSITORY                  TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-hello-world                 latest              80d1436c2e8f        About an hour ago   15.98 MB
-appleboy/hello-world        latest              80d1436c2e8f        About an hour ago   15.98 MB
+hello-world                 latest              5cca15b3231f        43 seconds ago      15.98 MB
+hello-world-build           latest              472296ce571d        47 seconds ago      282.5 MB
+```
+
+Rebuild your image.
+
+```bash
+$ make build
+docker build -t "hello-world-build" -f Dockerfile.build .
+Sending build context to Docker daemon 789.5 kB
+Step 1 : FROM golang:1.6-alpine
+ ---> 7ae766a8518d
+Step 2 : MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+ ---> Using cache
+ ---> 9cee8a14fec4
+Step 3 : RUN apk --update add git
+ ---> Using cache
+ ---> d17daae20ba7
+Step 4 : RUN mkdir -p /tmp/build
+ ---> Using cache
+ ---> cf511150ec0e
+Step 5 : ADD hello-world.go /tmp/build/
+ ---> Using cache
+ ---> 02e933c9c453
+Step 6 : WORKDIR /tmp/build
+ ---> Using cache
+ ---> a0d43ae462b5
+Step 7 : RUN go get -d
+ ---> Running in b02a8bd86c4f
+ ---> 4946d82c8d0f
+Removing intermediate container b02a8bd86c4f
+Step 8 : RUN go build hello-world.go
+ ---> Running in b88fcda825f1
+ ---> 8e25074145ff
+Removing intermediate container b88fcda825f1
+Step 9 : CMD tar -czf - hello-world
+ ---> Running in 2c6e38a708c7
+ ---> 472296ce571d
+Removing intermediate container 2c6e38a708c7
+Successfully built 472296ce571d
+docker run "hello-world-build" > build.tar.gz
+docker build -t "hello-world" -f Dockerfile.dist .
+Sending build context to Docker daemon 4.007 MB
+Step 1 : FROM gliderlabs/alpine:3.3
+ ---> 24e7cde1dbe9
+Step 2 : MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+ ---> Using cache
+ ---> 73e6d76da566
+Step 3 : RUN mkdir /app
+ ---> Using cache
+ ---> c8c863a62423
+Step 4 : ADD build.tar.gz /app/
+ ---> 12ef80e2e0c6
+Removing intermediate container 38ef062dc3bd
+Step 5 : ENTRYPOINT /app/hello-world
+ ---> Running in a4781a03cfd4
+ ---> 07f53380e131
+Removing intermediate container a4781a03cfd4
+Step 6 : EXPOSE 8000
+ ---> Running in 967f83e5c5f6
+ ---> 5cca15b3231f
+Removing intermediate container 967f83e5c5f6
+Successfully built 5cca15b3231f
+```
+
+Restart your app server.
+
+```bash
+$ make server
+docker rm -f hello-production
+hello-production
+docker run -d -p 8000:8000 --name "hello-production" "hello-world"
+52723b9e29c2a422451e7a5e73fbd44be83c730006c02667140b43cf7f73c146
 ```
 
 Deploy your image to [docker hub](https://hub.docker.com)
