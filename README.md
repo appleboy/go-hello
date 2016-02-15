@@ -36,7 +36,7 @@ Open your browser with `http://your_docker_ip:8000` and get the follwoing messag
 
 ```javascript
 {
-  "currentTime":"2016-02-14T07:50:27.536032273Z",
+  "current_time":"2016-02-14T07:50:27.536032273Z",
   "text":"hello world"
 }
 ```
