@@ -13,8 +13,8 @@ import (
 
 func TestHello(t *testing.T) {
 	type Message struct {
-		Text        string
-		CurrentTime string
+		Text        string `json:"text"`
+		CurrentTime string `json:"current_time"`
 	}
 
 	gin.SetMode(gin.TestMode)
@@ -31,13 +31,13 @@ func TestHello(t *testing.T) {
 
 	// pase json body.
 	dec := json.NewDecoder(strings.NewReader(w.Body.String()))
-	var m Message
-	err2 := dec.Decode(&m)
+	var exp Message
+	err2 := dec.Decode(&exp)
 	if err2 != nil {
 		log.Fatal(err2)
 	}
 
-	if m.Text != "hello world" {
+	if exp.Text != "hello world" {
 		t.Errorf("JSON Text value didn't return hello world")
 	}
 
