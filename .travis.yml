@@ -5,6 +5,10 @@ language: go
 services:
   - docker
 
+env:
+  global:
+   - secure: "O9/dhdB/jOb8DwCQZ5OP3PUoRecyTThGjauYX7XAhE8YVNVtoleUhCChSjD6OKLvVonWMaLF4wCJRdEpUlkWUVerwPanzd7+zHKdsTuOm+Xi5AiaUCXB9dkROcg7UaQrq+8mAIKkLpIX5UXvtyEQUo95JitHhHkbwAdBM3RZw+s="
+
 go:
   - 1.3
   - 1.4
@@ -14,6 +18,11 @@ go:
 before_install:
   - make all
 
+install:
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+
 script:
   - curl http://127.0.0.1:8000
   - make test
+  - go test -v -covermode=count -coverprofile=coverage.out $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
