@@ -2,7 +2,7 @@
 
 hello world for go lang example.
 
-[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello)
+[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello) [![Coverage Status](https://coveralls.io/repos/github/appleboy/go-hello/badge.svg?branch=master)](https://coveralls.io/github/appleboy/go-hello?branch=master)
 
 ## Getting Started
 
