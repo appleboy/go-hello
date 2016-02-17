@@ -32,9 +32,8 @@ func TestHello(t *testing.T) {
 	// pase json body.
 	dec := json.NewDecoder(strings.NewReader(w.Body.String()))
 	var exp Message
-	err2 := dec.Decode(&exp)
-	if err2 != nil {
-		log.Fatal(err2)
+	if err := dec.Decode(&exp); err != nil {
+		log.Fatal(err)
 	}
 
 	if exp.Text != "hello world" {
