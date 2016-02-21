@@ -1,3 +1,5 @@
 build.tar.gz
 go-hello
 gin-bin
+# ignore drone Secrets file
+secrets.yml
