@@ -1,8 +1,11 @@
 build:
   image: golang:1.6
+  environment:
+    - COVERALLS_TOKEN=$$COVERALLS_TOKEN
   commands:
     - go get golang.org/x/tools/cmd/cover
     - go get github.com/mattn/goveralls
     - go get ./...
     - make test
     - go test -v -covermode=count -coverprofile=coverage.out
+    - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$$COVERALLS_TOKEN
