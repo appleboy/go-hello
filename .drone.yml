@@ -1,6 +1,8 @@
 build:
   image: golang:1.6
   commands:
+    - go get golang.org/x/tools/cmd/cover
+    - go get github.com/mattn/goveralls
     - go get ./...
     - go build
     - go test -v
