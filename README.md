@@ -2,7 +2,7 @@
 
 hello world for go lang example.
 
-[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello) [![Coverage Status](https://coveralls.io/repos/github/appleboy/go-hello/badge.svg?branch=master)](https://coveralls.io/github/appleboy/go-hello?branch=master)
+[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello) [![Coverage Status](https://coveralls.io/repos/github/appleboy/go-hello/badge.svg?branch=master)](https://coveralls.io/github/appleboy/go-hello?branch=master) [![Build Status](https://drone.io/github.com/appleboy/go-hello/status.png)](https://drone.io/github.com/appleboy/go-hello/latest) [![Build Status](http://drone.wu-boy.com/api/badges/appleboy/go-hello/status.svg)](http://drone.wu-boy.com/appleboy/go-hello)
 
 [![](http://badge-imagelayers.iron.io/appleboy/hello-world:6.0.svg)](http://imagelayers.iron.io/?images=appleboy/hello-world:6.0 'Get your own badge on imagelayers.iron.io')
 
