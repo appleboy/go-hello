@@ -20,10 +20,10 @@ Start web server and default port is `8000`
 $ go run hello-world.go
 ```
 
-You can change default port via add `PORT` variable.
+You can change default port via add `port` flag.
 
 ```bash
-$ PORT=8001 go run hello-world.go
+$ go run hello-world.go -port=8009
 ```
 
 ## Using Docker
