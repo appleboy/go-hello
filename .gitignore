@@ -1,5 +1,5 @@
 build.tar.gz
-go-hello
+hello-world
 gin-bin
 # ignore drone Secrets file
 secrets.yml

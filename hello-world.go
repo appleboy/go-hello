@@ -1,8 +1,8 @@
 package main
 
 import (
+	"flag"
 	"github.com/gin-gonic/gin"
-	"os"
 	"time"
 )
 
@@ -16,11 +16,13 @@ func rootHandler(context *gin.Context) {
 }
 
 func main() {
-	port := os.Getenv("PORT")
-	router := gin.Default()
-	if port == "" {
-		port = "8000"
-	}
+	port := flag.String("port", "8000", "The port for the mock server to listen to")
+
+	// Parse all flag
+	flag.Parse()
+
+	router := gin.New()
+
 	router.GET("/", rootHandler)
-	router.Run(":" + port)
+	router.Run(":" + *port)
 }
