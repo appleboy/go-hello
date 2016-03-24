@@ -18,8 +18,7 @@ func TestHello(t *testing.T) {
 	}
 
 	gin.SetMode(gin.TestMode)
-	r := gin.New()
-	r.Handle("GET", "/", rootHandler)
+	r := GetMainEngine()
 	req, err := http.NewRequest("GET", "/", nil)
 
 	if err != nil {

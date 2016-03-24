@@ -15,14 +15,23 @@ func rootHandler(context *gin.Context) {
 	})
 }
 
+func GetMainEngine() *gin.Engine {
+	r := gin.New()
+
+	// Global middleware
+	r.Use(gin.Logger())
+	r.Use(gin.Recovery())
+
+	r.GET("/", rootHandler)
+
+	return r
+}
+
 func main() {
 	port := flag.String("port", "8000", "The port for the mock server to listen to")
 
 	// Parse all flag
 	flag.Parse()
 
-	router := gin.New()
-
-	router.GET("/", rootHandler)
-	router.Run(":" + *port)
+	GetMainEngine().Run(":" + *port)
 }
