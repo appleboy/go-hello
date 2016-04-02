@@ -1,46 +1,50 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"github.com/appleboy/gofight"
+	"github.com/stretchr/testify/assert"
+	"github.com/buger/jsonparser"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
-	"net/http/httptest"
-	"strings"
 	"testing"
+	"time"
+	"io/ioutil"
 )
 
-func TestHello(t *testing.T) {
-	type Message struct {
-		Text        string `json:"text"`
-		CurrentTime string `json:"current_time"`
-	}
+func testRequest(t *testing.T, url string) {
+	resp, err := http.Get(url)
+	defer resp.Body.Close()
+	assert.NoError(t, err)
 
-	gin.SetMode(gin.TestMode)
-	r := GetMainEngine()
-	req, err := http.NewRequest("GET", "/", nil)
+	_, ioerr := ioutil.ReadAll(resp.Body)
+	assert.NoError(t, ioerr)
+	assert.Equal(t, "200 OK", resp.Status, "should get a 200")
+}
 
-	if err != nil {
-		log.Fatal(err)
-	}
+func TestGinHelloWorld(t *testing.T) {
+	r := gofight.New()
 
-	w := httptest.NewRecorder()
-	r.ServeHTTP(w, req)
+	r.GET("/").
+		Run(GetMainEngine(), func(r gofight.HttpResponse, rq gofight.HttpRequest) {
+			data := []byte(r.Body.String())
 
-	// pase json body.
-	dec := json.NewDecoder(strings.NewReader(w.Body.String()))
-	var exp Message
-	if err := dec.Decode(&exp); err != nil {
-		log.Fatal(err)
-	}
+			value, _ := jsonparser.GetString(data, "text")
 
-	if exp.Text != "hello world" {
-		t.Errorf("JSON Text value didn't return hello world")
-	}
+			assert.Equal(t, "Hello World", value)
+			assert.Equal(t, http.StatusOK, r.Code)
+		})
+}
 
-	if w.Code != http.StatusOK {
-		fmt.Printf("%d - %s", w.Code, w.Body.String())
-		t.Errorf("Home page didn't return %v", http.StatusOK)
-	}
+func TestRunNormalServer(t *testing.T) {
+	router := gin.New()
+
+	go func() {
+		assert.NoError(t, RunHTTPServer())
+	}()
+	// have to wait for the goroutine to start and run the server
+	// otherwise the main thread will complete
+	time.Sleep(5 * time.Millisecond)
+
+	assert.Error(t, router.Run(":8000"))
+	testRequest(t, "http://localhost:8000/")
 }
