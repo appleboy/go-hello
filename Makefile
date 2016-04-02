@@ -15,7 +15,7 @@ build:
 
 server:
 	-docker rm -f hello-production
-	-docker run -d -p 8000:8000 --name $(PRODUCTION_NAME) $(PRODUCTION_IMAGE)
+	-docker run -d -p 8088:8000 --name $(PRODUCTION_NAME) $(PRODUCTION_IMAGE)
 
 deploy:
 ifeq ($(tag),)
@@ -29,8 +29,8 @@ hello: ${DEPS}
 	GO15VENDOREXPERIMENT=1 go build
 
 test:
-	go get -d
-	go test
+	go get -t -v ./...
+	go test -v
 
 clean:
 	rm -rf build.tar.gz
