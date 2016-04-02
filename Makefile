@@ -29,8 +29,8 @@ hello: ${DEPS}
 	GO15VENDOREXPERIMENT=1 go build
 
 test:
-	go get -d
-	go test
+	go get -t -v ./...
+	go test -v
 
 clean:
 	rm -rf build.tar.gz
