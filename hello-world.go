@@ -18,10 +18,6 @@ func rootHandler(context *gin.Context) {
 func GetMainEngine() *gin.Engine {
 	r := gin.New()
 
-	// Global middleware
-	r.Use(gin.Logger())
-	r.Use(gin.Recovery())
-
 	r.GET("/", rootHandler)
 
 	return r

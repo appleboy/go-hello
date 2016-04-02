@@ -2,26 +2,16 @@ package main
 
 import (
 	"github.com/appleboy/gofight"
-	"github.com/stretchr/testify/assert"
 	"github.com/buger/jsonparser"
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
 	"time"
-	"io/ioutil"
 )
 
-func testRequest(t *testing.T, url string) {
-	resp, err := http.Get(url)
-	defer resp.Body.Close()
-	assert.NoError(t, err)
-
-	_, ioerr := ioutil.ReadAll(resp.Body)
-	assert.NoError(t, ioerr)
-	assert.Equal(t, "200 OK", resp.Status, "should get a 200")
-}
-
 func TestGinHelloWorld(t *testing.T) {
+	gin.SetMode(gin.TestMode)
 	r := gofight.New()
 
 	r.GET("/").
@@ -36,6 +26,7 @@ func TestGinHelloWorld(t *testing.T) {
 }
 
 func TestRunNormalServer(t *testing.T) {
+	gin.SetMode(gin.TestMode)
 	router := gin.New()
 
 	go func() {
@@ -46,5 +37,5 @@ func TestRunNormalServer(t *testing.T) {
 	time.Sleep(5 * time.Millisecond)
 
 	assert.Error(t, router.Run(":8000"))
-	testRequest(t, "http://localhost:8000/")
+	gofight.TestRequest(t, "http://localhost:8000/")
 }
