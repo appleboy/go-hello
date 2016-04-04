@@ -15,7 +15,7 @@ func TestGinHelloWorld(t *testing.T) {
 	r := gofight.New()
 
 	r.GET("/").
-		Run(GetMainEngine(), func(r gofight.HttpResponse, rq gofight.HttpRequest) {
+		Run(GetMainEngine(), func(r gofight.HTTPResponse, rq gofight.HTTPRequest) {
 			data := []byte(r.Body.String())
 
 			value, _ := jsonparser.GetString(data, "text")
