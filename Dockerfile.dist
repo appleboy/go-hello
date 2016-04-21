@@ -1,12 +1,17 @@
+# load image from alpine
 FROM alpine
 
+# Add maintainer
 MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
 
+# update your images
 RUN apk update && apk upgrade \
   && apk add ca-certificates \
   && rm -rf /var/cache/apk/*
 
 RUN mkdir /app
 ADD build.tar.gz /app/
+
+# execute when you create new container
 ENTRYPOINT /app/hello-world
 EXPOSE 8000
