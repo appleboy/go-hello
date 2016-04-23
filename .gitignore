@@ -3,3 +3,4 @@ hello-world
 gin-bin
 # ignore drone Secrets file
 secrets.yml
+coverage.out

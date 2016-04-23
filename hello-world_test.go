@@ -30,7 +30,7 @@ func TestRunNormalServer(t *testing.T) {
 	router := gin.New()
 
 	go func() {
-		assert.NoError(t, RunHTTPServer())
+		main()
 	}()
 	// have to wait for the goroutine to start and run the server
 	// otherwise the main thread will complete
