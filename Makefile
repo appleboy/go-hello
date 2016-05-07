@@ -8,6 +8,12 @@ DEPLOY_ACCOUNT := "appleboy"
 
 all: build server
 
+bundle:
+	glide install
+
+bundle_update:
+	glide update --all-dependencies --resolve-current
+
 build:
 	docker build -t $(BUILD_IMAGE) -f Dockerfile.build .
 	docker run $(BUILD_IMAGE) > build.tar.gz
@@ -29,8 +35,7 @@ hello: ${DEPS}
 	GO15VENDOREXPERIMENT=1 go build
 
 test:
-	go get -t -v ./...
-	go test -v
+	go test -v -cover
 
 clean:
 	rm -rf build.tar.gz
