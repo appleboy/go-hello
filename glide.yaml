@@ -1,0 +1,8 @@
+package: .
+import:
+- package: github.com/gin-gonic/gin
+- package: github.com/appleboy/gofight
+- package: github.com/buger/jsonparser
+- package: github.com/stretchr/testify
+  subpackages:
+  - assert

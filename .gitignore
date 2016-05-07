@@ -4,3 +4,4 @@ gin-bin
 # ignore drone Secrets file
 secrets.yml
 coverage.out
+vendor
