@@ -5,3 +5,4 @@ gin-bin
 secrets.yml
 coverage.out
 vendor
+coverage.txt
