@@ -1,10 +1,6 @@
-hash: b6eb164feaa64746509b483667707f71de715f71f9e4326486b8967add79026c
-updated: 2016-07-14T00:27:21.600256778+08:00
+hash: 963220eed921fe0fcb34d7f1e54b841a9e8d12b968614b61a43f8f5f5dcb574c
+updated: 2016-07-25T22:47:28.421212648+08:00
 imports:
-- name: github.com/appleboy/gofight
-  version: 7cf5abae9137933e9818a05ac249e34b406eace1
-- name: github.com/buger/jsonparser
-  version: 183ade1ac7705adf72585f92410fc0912783217a
 - name: github.com/gin-gonic/gin
   version: f931d1ea80ae95a6fc739213cdd9399bd2967fb6
   subpackages:
@@ -16,10 +12,6 @@ imports:
   - proto
 - name: github.com/manucorporat/sse
   version: ee05b128a739a0fb76c7ebd3ae4810c1de808d6d
-- name: github.com/stretchr/testify
-  version: f390dcf405f7b83c997eac1b06768bb9f44dec18
-  subpackages:
-  - assert
 - name: golang.org/x/net
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
@@ -27,20 +19,24 @@ imports:
 - name: gopkg.in/go-playground/validator.v8
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/yaml.v2
-  version: a83829b6f1293c91addabc89d0571c246397bbf4
+  version: e4d366fc3c7938e2958e662b4258c7a89e1f0e3e
 testImports:
+- name: github.com/appleboy/gofight
+  version: 272e8650cb528d0a8ce1de90826a20de1da28170
+- name: github.com/buger/jsonparser
+  version: 16b91a7a5c68f51ef0a249ef2b554a76244b475c
 - name: github.com/davecgh/go-spew
   version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
   subpackages:
   - spew
 - name: github.com/labstack/echo
-  version: 451b2ccc9ffda7fd7fad2027b75d93b18ff87cbe
+  version: 579cb79a41a2e931699bad83111728d78aa11d48
   subpackages:
   - engine
   - test
   - log
 - name: github.com/labstack/gommon
-  version: 722aa12d41c236ce78ff48eac1cafe0107ecdc9d
+  version: 445cf40e6de4cbef35daf3285ff5212c91e78262
   subpackages:
   - log
   - color
@@ -52,9 +48,13 @@ testImports:
   version: 792786c7400a136282c1664665ae0a8db921c6c2
   subpackages:
   - difflib
+- name: github.com/stretchr/testify
+  version: f390dcf405f7b83c997eac1b06768bb9f44dec18
+  subpackages:
+  - assert
 - name: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
 - name: golang.org/x/sys
-  version: b518c298ac9dc94b6ac0757394f50d10c5dfa25a
+  version: a646d33e2ee3172a661fc09bca23bb4889a41bc8
   subpackages:
   - unix

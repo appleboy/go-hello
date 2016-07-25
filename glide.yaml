@@ -1,6 +1,7 @@
-package: .
+package: github.com/appleboy/go-hello
 import:
 - package: github.com/gin-gonic/gin
+testImport:
 - package: github.com/appleboy/gofight
 - package: github.com/buger/jsonparser
 - package: github.com/stretchr/testify
