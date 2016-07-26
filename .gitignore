@@ -3,6 +3,5 @@ hello-world
 gin-bin
 # ignore drone Secrets file
 secrets.yml
-coverage.out
 vendor
-coverage.txt
+.cover

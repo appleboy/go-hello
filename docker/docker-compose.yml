@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  golang-hello-testing:
+    build: ./golang
+    privileged: true
+    volumes:
+      - ../:/go/src/github.com/appleboy/go-hello
+    command: sh -c "make install && coverage all"

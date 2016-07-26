@@ -8,11 +8,11 @@ DEPLOY_ACCOUNT := "appleboy"
 
 all: build server
 
-bundle:
+install:
 	glide install
 
-bundle_update:
-	glide update --all-dependencies --resolve-current
+update:
+	glide update
 
 build:
 	docker build -t $(BUILD_IMAGE) -f Dockerfile.build .
@@ -37,8 +37,13 @@ hello: ${DEPS}
 test:
 	go test -v -cover
 
+docker_test: clean
+	docker-compose -f docker/docker-compose.yml run golang-hello-testing
+	docker-compose -f docker/docker-compose.yml down
+
 clean:
-	rm -rf build.tar.gz
+	-rm -rf .cover
+	-rm -rf build.tar.gz
 	go clean
 
 dist-clean: clean
