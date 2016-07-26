@@ -44,7 +44,6 @@ docker_test: clean
 clean:
 	-rm -rf .cover
 	-rm -rf build.tar.gz
-	go clean
 
 dist-clean: clean
 	-docker rmi -f $(BUILD_IMAGE)
