@@ -5,6 +5,7 @@ BUILD_IMAGE := "hello-world-build"
 PRODUCTION_IMAGE := "hello-world"
 PRODUCTION_NAME := "hello-production"
 DEPLOY_ACCOUNT := "appleboy"
+export PROJECT_PATH = /go/src/github.com/appleboy/go-hello
 
 all: build server
 
@@ -37,8 +38,8 @@ hello: ${DEPS}
 test:
 	go test -v -cover
 
-docker_test: clean
-	export PROJECT_PATH=/go/src/github.com/appleboy/go-hello
+docker_test: dist-clean
+	docker-compose -f docker/docker-compose.yml config
 	docker-compose -f docker/docker-compose.yml run golang-hello-testing
 	docker-compose -f docker/docker-compose.yml down
 
@@ -50,3 +51,4 @@ dist-clean: clean
 	-docker rmi -f $(BUILD_IMAGE)
 	-docker rm -f $(PRODUCTION_NAME)
 	-docker rmi -f $(PRODUCTION_IMAGE)
+	-docker-compose -f docker/docker-compose.yml down
