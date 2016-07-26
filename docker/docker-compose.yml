@@ -2,10 +2,13 @@ version: "2"
 
 services:
   golang-hello-testing:
-    build: ./golang
+    build:
+      context: ./golang
+      args:
+        PROJECT_PATH: $PROJECT_PATH
     privileged: true
     environment:
-      PROJECT_PATH: "/go/src/github.com/appleboy/go-hello"
+      - PROJECT_PATH
     volumes:
-      - ../:/go/src/github.com/appleboy/go-hello
+      - ../:$PROJECT_PATH
     command: sh -c "make install && coverage all"

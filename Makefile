@@ -38,6 +38,7 @@ test:
 	go test -v -cover
 
 docker_test: clean
+	export PROJECT_PATH=/go/src/github.com/appleboy/go-hello
 	docker-compose -f docker/docker-compose.yml run golang-hello-testing
 	docker-compose -f docker/docker-compose.yml down
 
