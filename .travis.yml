@@ -28,7 +28,6 @@ before_install:
 
 install:
   - export GO15VENDOREXPERIMENT=1
-  - make install
   - go get github.com/mattn/goveralls
 
 script:
