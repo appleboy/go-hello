@@ -4,6 +4,8 @@ services:
   golang-hello-testing:
     build: ./golang
     privileged: true
+    environment:
+      PROJECT_PATH: "/go/src/github.com/appleboy/go-hello"
     volumes:
       - ../:/go/src/github.com/appleboy/go-hello
     command: sh -c "make install && coverage all"
