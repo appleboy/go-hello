@@ -38,12 +38,12 @@ hello: ${DEPS}
 test:
 	go test -v -cover
 
-docker_test: dist-clean
+docker_compose_test: dist-clean
 	docker-compose -f docker/docker-compose.yml config
 	docker-compose -f docker/docker-compose.yml run golang-hello-testing
 	docker-compose -f docker/docker-compose.yml down
 
-single_docker_test: clean
+docker_test: dist-clean
 	docker run --rm \
 		-v $(PWD):$(PROJECT_PATH) \
 		-w=$(PROJECT_PATH) \
