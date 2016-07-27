@@ -43,6 +43,13 @@ docker_test: dist-clean
 	docker-compose -f docker/docker-compose.yml run golang-hello-testing
 	docker-compose -f docker/docker-compose.yml down
 
+single_docker_test: clean
+	docker run --rm \
+		-v $(PWD):$(PROJECT_PATH) \
+		-w=$(PROJECT_PATH) \
+		appleboy/golang-testing \
+		sh -c "make install && coverage all"
+
 clean:
 	-rm -rf .cover
 	-rm -rf build.tar.gz
