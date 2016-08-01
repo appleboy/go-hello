@@ -15,6 +15,7 @@ func rootHandler(context *gin.Context) {
 	})
 }
 
+// GetMainEngine is default router engine using gin framework.
 func GetMainEngine() *gin.Engine {
 	r := gin.New()
 
@@ -23,6 +24,7 @@ func GetMainEngine() *gin.Engine {
 	return r
 }
 
+// RunHTTPServer List 8000 default port.
 func RunHTTPServer() error {
 	port := flag.String("port", "8000", "The port for the mock server to listen to")
 
