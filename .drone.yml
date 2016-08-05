@@ -6,9 +6,11 @@ pipeline:
       - go get -t -d -v
       - go build
       - go test -v -cover
+
 workspace:
   base: /go
+
 matrix:
   GO_VERSION:
-    - 1.5.4
+    - 1.6.2
     - 1.6.3
