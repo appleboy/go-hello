@@ -1,10 +1,6 @@
-build:
-  image: golang:1.6
-  environment:
-    - COVERALLS_TOKEN=$$COVERALLS_TOKEN
-  commands:
-    - go get golang.org/x/tools/cmd/cover
-    - go get github.com/mattn/goveralls
-    - go get -d
-    - make test
-    - go test -v -covermode=count -coverprofile=coverage.out
+pipeline:
+  build:
+    image: appleboy/golang-testing
+    commands:
+      - glide install
+      - coverage all
