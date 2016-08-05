@@ -1,16 +1,9 @@
 pipeline:
   build:
-    image: golang:${GO_VERSION}-alpine
+    image: appleboy/golang-testing
     commands:
-      - apk --update add git
-      - go get -t -d -v
-      - go build
-      - go test -v -cover
+      - glide install
+      - coverage all
 
 workspace:
-  base: /go
-
-matrix:
-  GO_VERSION:
-    - 1.6.2
-    - 1.6.3
+  path: /go/src/github.com/appleboy/go-hello
