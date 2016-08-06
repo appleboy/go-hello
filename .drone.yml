@@ -1,6 +1,8 @@
 pipeline:
   build:
     image: appleboy/golang-testing
+    environment:
+      - GOPATH=/go
     commands:
       - glide install
       - coverage all
