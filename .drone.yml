@@ -12,7 +12,7 @@ pipeline:
     channel: jenkins
     username: drone
     when:
-      status: [ success, failure ]
+      status: [ killed, success, failure ]
     template: |
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
 
@@ -20,7 +20,7 @@ pipeline:
     channel: drone
     username: drone
     when:
-      status: [ success, failure ]
+      status: [ killed, success, failure ]
     template: |
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
 
