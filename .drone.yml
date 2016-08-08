@@ -13,8 +13,6 @@ pipeline:
     username: drone
     when:
       status: [ success, failure ]
-    environment:
-      - SLACK_WEBHOOK=https://hooks.slack.com/services/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
     template: |
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
 
@@ -23,8 +21,6 @@ pipeline:
     username: drone
     when:
       status: [ success, failure ]
-    environment:
-      - SLACK_WEBHOOK=https://hooks.slack.com/services/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
     template: |
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
 
