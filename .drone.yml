@@ -7,5 +7,22 @@ pipeline:
       - glide install
       - coverage all
 
+  notify:
+    image: slack
+    channel: jenkins
+    username: drone
+    when:
+      status: [ success, failure ]
+    template: |
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+
+  slack:
+    channel: drone
+    username: drone
+    when:
+      status: [ success, failure ]
+    template: |
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+
 workspace:
   path: /go/src/github.com/appleboy/go-hello
