@@ -8,13 +8,14 @@ pipeline:
       - coverage all
 
   notify:
-    image: slack
-    channel: jenkins
-    username: drone
-    when:
-      status: [ success, failure ]
-    template: |
-      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+    slack:
+      image: slack
+      channel: jenkins
+      username: drone
+      when:
+        status: [ success, failure ]
+      template: |
+        *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
 
   slack:
     channel: drone
