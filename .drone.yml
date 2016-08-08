@@ -7,5 +7,26 @@ pipeline:
       - glide install
       - coverage all
 
+  notify:
+    image: slack
+    channel: jenkins
+    username: drone
+    when:
+      status: [ success, failure ]
+    environment:
+      - SLACK_WEBHOOK=https://hooks.slack.com/services/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
+    template: |
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+
+  slack:
+    channel: drone
+    username: drone
+    when:
+      status: [ success, failure ]
+    environment:
+      - SLACK_WEBHOOK=https://hooks.slack.com/services/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
+    template: |
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+
 workspace:
   path: /go/src/github.com/appleboy/go-hello
