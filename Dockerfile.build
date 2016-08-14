@@ -1,11 +1,12 @@
-FROM golang:1.6-alpine
+FROM appleboy/golang-testing
 
 MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
 
-RUN apk --update add git
-RUN mkdir -p /tmp/build
-ADD hello-world.go /tmp/build/
-WORKDIR /tmp/build
-RUN go get -d
+ENV app /go/src/github.com/appleboy/go-hello
+
+RUN mkdir -p $app
+ADD . $app
+WORKDIR $app
+RUN make install
 RUN go build -ldflags="-s -w" hello-world.go
 CMD tar -czf - hello-world
