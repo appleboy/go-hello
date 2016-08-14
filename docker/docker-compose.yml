@@ -11,4 +11,5 @@ services:
       - PROJECT_PATH
     volumes:
       - ../:$PROJECT_PATH
-    command: sh -c "glide install && coverage all"
+    command: sh -c "make install && coverage all"
+
