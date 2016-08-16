@@ -30,7 +30,9 @@ install:
   - go get github.com/mattn/goveralls
 
 script:
+  - make test
   - make docker_test
+  - make docker_compose_test
   - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=.cover/coverage.txt -service=travis-ci -repotoken=$COVERALLS_TOKEN
 
 after_success:

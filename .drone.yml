@@ -1,6 +1,7 @@
 pipeline:
   build:
     image: appleboy/golang-testing
+    pull: true
     environment:
       - GOPATH=/go
     commands:
