@@ -9,13 +9,14 @@ pipeline:
       - coverage all
 
   notify:
-    image: slack
+    image: appleboy/drone-slack
     channel: jenkins
     username: drone
     when:
-      status: [ killed, success, failure ]
+      status: [ success, failure ]
     template: |
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+    image_url: https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-128.png
 
   slack:
     channel: drone
