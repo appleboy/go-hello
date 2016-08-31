@@ -147,8 +147,12 @@ c8c863a62423: Image already exists
 
 ```bash
 $ make test
-go get -t -v ./...
-go test -v
+go test -v -cover
+=== RUN   TestGinHelloWorld
+--- PASS: TestGinHelloWorld (0.00s)
+=== RUN   TestRunNormalServer
+--- PASS: TestRunNormalServer (0.03s)
 PASS
-ok    github.com/appleboy/go-hello  0.012s
+coverage: 100.0% of statements
+ok      github.com/appleboy/go-hello    0.038s 
 ```
