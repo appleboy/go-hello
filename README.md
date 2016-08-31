@@ -2,7 +2,7 @@
 
 hello world for go lang example.
 
-[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello) [![codecov](https://codecov.io/gh/appleboy/go-hello/branch/master/graph/badge.svg)](https://codecov.io/gh/appleboy/go-hello) [![Coverage Status](https://coveralls.io/repos/github/appleboy/go-hello/badge.svg?branch=master)](https://coveralls.io/github/appleboy/go-hello?branch=master) [![Build Status](http://drone5.wu-boy.com/api/badges/appleboy/go-hello/status.svg)](http://drone5.wu-boy.com/appleboy/go-hello)
+[![Build Status](https://travis-ci.org/appleboy/go-hello.svg?branch=master)](https://travis-ci.org/appleboy/go-hello) [![Go Report Card](https://goreportcard.com/badge/github.com/appleboy/go-hello)](https://goreportcard.com/report/github.com/appleboy/go-hello) [![codecov](https://codecov.io/gh/appleboy/go-hello/branch/master/graph/badge.svg)](https://codecov.io/gh/appleboy/go-hello) [![Coverage Status](https://coveralls.io/repos/github/appleboy/go-hello/badge.svg?branch=master)](https://coveralls.io/github/appleboy/go-hello?branch=master) [![Build Status](http://drone.wu-boy.com/api/badges/appleboy/go-hello/status.svg)](http://drone.wu-boy.com/appleboy/go-hello)
 
 ## Getting Started
 
