@@ -9,7 +9,7 @@ pipeline:
       - coverage all
 
   notify:
-    image: slack
+    image: plugins/slack
     channel: jenkins
     username: drone
     when:
@@ -19,7 +19,7 @@ pipeline:
     image_url: https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-128.png
 
   slack:
-    image: slack
+    image: plugins/slack
     channel: drone
     username: drone
     when:
