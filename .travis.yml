@@ -12,7 +12,8 @@ go:
 
 cache:
   directories:
-    - /home/travis/golang/
+    - vendor
+    - ${HOME}/.glide
 
 env:
   global:
@@ -22,8 +23,6 @@ env:
 
 before_install:
   - curl https://glide.sh/get | sh
-  - if [ -f ${GLIDE_CACHE_FILE} ]; then tar -zxvf ${GLIDE_CACHE_FILE} -C ${HOME}; fi
-  - if [ -f ${VENDOR_CACHE_FILE} ]; then tar -zxvf ${VENDOR_CACHE_FILE}; fi
 
 install:
   - export GO15VENDOREXPERIMENT=1
@@ -34,8 +33,6 @@ script:
   - make docker_test
   - make docker_compose_test
   - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=.cover/coverage.txt -service=travis-ci -repotoken=$COVERALLS_TOKEN
-  - if [[ ${TRAVIS_BRANCH} == "master" ]]; then mkdir -p $(dirname ${VENDOR_CACHE_FILE}) ; tar -zcf ${VENDOR_CACHE_FILE} vendor ; fi
-  - if [[ ${TRAVIS_BRANCH} == "master" ]]; then mkdir -p $(dirname ${GLIDE_CACHE_FILE}) ; tar -zcf ${GLIDE_CACHE_FILE} -C ${HOME} .glide ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -f .cover/coverage.txt
