@@ -28,5 +28,9 @@ pipeline:
       *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
     icon_url: https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-128.png
 
+  line:
+    image: appleboy/drone-line
+    to: u359650f919427b5229330c7205c47ee4
+
 workspace:
   path: /go/src/github.com/appleboy/go-hello
