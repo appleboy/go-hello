@@ -1,4 +1,11 @@
 pipeline:
+  # restore the cache from an sftp server
+  restore_cache:
+    image: appleboy/drone-sftp-cache
+    restore: true
+    mount: [ .glide, vendor ]
+    ignore_branch: true
+
   build:
     image: appleboy/golang-testing
     pull: true
@@ -32,6 +39,13 @@ pipeline:
     image: appleboy/drone-line
     pull: true
     to: u359650f919427b5229330c7205c47ee4
+
+  # rebuild the cache on the sftp server
+  rebuild_cache:
+    image: appleboy/drone-sftp-cache
+    rebuild: true
+    mount: [ .glide, vendor ]
+    ignore_branch: true
 
 workspace:
   path: /go/src/github.com/appleboy/go-hello
