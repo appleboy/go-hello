@@ -24,7 +24,7 @@ server:
 	-docker rm -f hello-production
 	-docker run -d -p 8088:8000 --name $(PRODUCTION_NAME) $(PRODUCTION_IMAGE)
 
-deploy:
+docker_deploy:
 ifeq ($(tag),)
 	@echo "Usage: make $@ tag=<tag>"
 	@exit 1
