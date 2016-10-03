@@ -7,7 +7,7 @@ pipeline:
     ignore_branch: true
 
   build:
-    image: appleboy/golang-testing
+    image: appleboy/golang-testing:${GO_VERSION}
     pull: true
     environment:
       - GOPATH=/go
@@ -41,6 +41,8 @@ pipeline:
     to: u359650f919427b5229330c7205c47ee4
     when:
       status: [ success, failure ]
+      matrix:
+        GO_VERSION: 1.7.1
 
   facebook:
     image: appleboy/drone-facebook
@@ -48,6 +50,8 @@ pipeline:
     to: 1234973386524610
     when:
       status: [ success, failure ]
+      matrix:
+        GO_VERSION: 1.7.1
 
   # rebuild the cache on the sftp server
   rebuild_cache:
@@ -57,6 +61,13 @@ pipeline:
     ignore_branch: true
     when:
       branch: master
+      matrix:
+        GO_VERSION: 1.7.1
 
 workspace:
   path: /go/src/github.com/appleboy/go-hello
+
+matrix:
+  GO_VERSION:
+    - 1.7.1
+    - 1.6.3
