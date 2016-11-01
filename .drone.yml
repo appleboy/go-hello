@@ -15,15 +15,34 @@ pipeline:
       - glide install
       - coverage all
 
-  notify:
+  notify_1:
+    pull: true
     image: plugins/slack
     channel: jenkins
     username: drone
     when:
       status: [ success, failure ]
-    template: |
-      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ truncate build.commit 8 }}> ({{ build.branch }}) by {{ build.author }}.
+    template: >
+      {{#success build.status}}
+        {{ build.author }} successfully pushed to {{ build.branch}}
+      {{else}}
+        {{ build.author }} broke the build. Hang your head in shame.
+      {{/success}}
     image_url: https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-128.png
+
+  notify_2:
+    pull: true
+    image: plugins/slack
+    channel: drone
+    username: drone
+    when:
+      status: [ success, failure ]
+    template: |
+      {{#success build.status}}
+        {{ build.author }} successfully pushed to {{ build.branch}}
+      {{else}}
+        {{ build.author }} broke the build. Hang your head in shame.
+      {{/success}}
 
   slack:
     image: plugins/slack
