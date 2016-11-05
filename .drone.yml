@@ -75,7 +75,9 @@ pipeline:
   gtalk:
     image: appleboy/drone-gtalk
     pull: true
-    to: appleboy.tw@gmail.com
+    to:
+      - appleboy.tw@gmail.com:appleboy.tw@gmail.com
+      - appleboy.tw@gmail.com:test@gmail.com
     when:
       status: [ success, failure ]
       matrix:
@@ -84,7 +86,7 @@ pipeline:
   telegram:
     image: appleboy/drone-telegram
     pull: true
-    to: 65382999
+    to: 65382999:appleboy.tw@gmail.com
     when:
       status: [ success, failure ]
       matrix:
