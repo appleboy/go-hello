@@ -83,10 +83,23 @@ pipeline:
       matrix:
         GO_VERSION: 1.7.3
 
-  telegram:
+  telegram_1:
     image: appleboy/drone-telegram
     pull: true
     to: 65382999:appleboy.tw@gmail.com
+    when:
+      status: [ success, failure ]
+      matrix:
+        GO_VERSION: 1.7.3
+
+  telegram_2:
+    image: appleboy/drone-telegram
+    pull: true
+    only_match_email: true
+    to:
+      - 65382999:appleboy.tw@gmail.com
+      - 65382999
+    message: "Please don't send duplicate of message"
     when:
       status: [ success, failure ]
       matrix:
