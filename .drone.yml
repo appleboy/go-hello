@@ -87,6 +87,7 @@ pipeline:
     image: appleboy/drone-gtalk
     pull: true
     only_match_email: true
+    message: "Please don't send duplicate of message"
     to:
       - appleboy.tw@gmail.com:appleboy.tw@gmail.com
       - appleboy.tw@gmail.com
