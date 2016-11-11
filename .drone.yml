@@ -72,12 +72,24 @@ pipeline:
       matrix:
         GO_VERSION: 1.7.3
 
-  gtalk:
+  gtalk_1:
     image: appleboy/drone-gtalk
     pull: true
     to:
       - appleboy.tw@gmail.com:appleboy.tw@gmail.com
       - appleboy.tw@gmail.com:test@gmail.com
+    when:
+      status: [ success, failure ]
+      matrix:
+        GO_VERSION: 1.7.3
+
+  gtalk_2:
+    image: appleboy/drone-gtalk
+    pull: true
+    only_match_email: true
+    to:
+      - appleboy.tw@gmail.com:appleboy.tw@gmail.com
+      - appleboy.tw@gmail.com
     when:
       status: [ success, failure ]
       matrix:
