@@ -57,7 +57,7 @@ pipeline:
   line:
     image: appleboy/drone-line
     pull: true
-    to: u359650f919427b5229330c7205c47ee4
+    to: U77234666b0313021f873b85de44209de
     when:
       status: [ success, failure ]
       matrix:
