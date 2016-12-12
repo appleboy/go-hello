@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all release-dirs release-build release-copy release-check release
 
 DEPS := $(wildcard *.go)
 BUILD_IMAGE := "hello-world-build"
@@ -6,6 +6,27 @@ PRODUCTION_IMAGE := "hello-world"
 PRODUCTION_NAME := "hello-production"
 DEPLOY_ACCOUNT := "appleboy"
 export PROJECT_PATH = /go/src/github.com/appleboy/go-hello
+
+DIST := dist
+EXECUTABLE := gorush
+
+TARGETS ?= linux darwin
+PACKAGES ?= $(shell go list ./... | grep -v /vendor/)
+SOURCES ?= $(shell find . -name "*.go" -type f)
+TAGS ?=
+LDFLAGS += -X 'main.Version=$(VERSION)'
+
+ifneq ($(shell uname), Darwin)
+	EXTLDFLAGS = -extldflags "-static" $(null)
+else
+	EXTLDFLAGS =
+endif
+
+ifneq ($(DRONE_TAG),)
+	VERSION ?= $(DRONE_TAG)
+else
+	VERSION ?= $(shell git describe --tags --always || git rev-parse --short HEAD)
+endif
 
 all: build server
 
@@ -49,6 +70,23 @@ docker_test: dist-clean
 		-w=$(PROJECT_PATH) \
 		appleboy/golang-testing \
 		sh -c "make install && coverage all"
+
+release: release-dirs release-build release-copy release-check
+
+release-dirs:
+	mkdir -p $(DIST)/binaries $(DIST)/release
+
+release-build:
+	@which gox > /dev/null; if [ $$? -ne 0 ]; then \
+		go get -u github.com/mitchellh/gox; \
+	fi
+	gox -os="$(TARGETS)" -arch="amd64 386" -tags="$(TAGS)" -ldflags="$(EXTLDFLAGS)-s -w $(LDFLAGS)" -output="$(DIST)/binaries/$(EXECUTABLE)-$(VERSION)-{{.OS}}-{{.Arch}}"
+
+release-copy:
+	$(foreach file,$(wildcard $(DIST)/binaries/$(EXECUTABLE)-*),cp $(file) $(DIST)/release/$(notdir $(file));)
+
+release-check:
+	cd $(DIST)/release; $(foreach file,$(wildcard $(DIST)/release/$(EXECUTABLE)-*),sha256sum $(notdir $(file)) > $(notdir $(file)).sha256;)
 
 clean:
 	-rm -rf .cover

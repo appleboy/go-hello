@@ -5,3 +5,4 @@ gin-bin
 secrets.yml
 vendor
 .cover
+dist

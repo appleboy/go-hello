@@ -14,6 +14,7 @@ pipeline:
     commands:
       - glide install
       - coverage all
+      - make release
 
   notify_1:
     pull: true
@@ -118,15 +119,15 @@ pipeline:
       matrix:
         GO_VERSION: 1.7.4
 
-  # github:
-  #   image: plugins/github-release
-  #   files:
-  #     - dist/release/*
-  #   when:
-  #     event: [ tag ]
-  #     branch: [ refs/tags/* ]
-  #     matrix:
-  #       GO_VERSION: 1.7.4
+  github:
+    image: plugins/github-release
+    files:
+      - dist/release/*
+    when:
+      event: [ tag ]
+      branch: [ refs/tags/* ]
+      matrix:
+        GO_VERSION: 1.7.4
 
   # rebuild the cache on the sftp server
   rebuild_cache:
