@@ -8,7 +8,7 @@ DEPLOY_ACCOUNT := "appleboy"
 export PROJECT_PATH = /go/src/github.com/appleboy/go-hello
 
 DIST := dist
-EXECUTABLE := gorush
+EXECUTABLE := go-hello
 
 TARGETS ?= linux darwin windows
 PACKAGES ?= $(shell go list ./... | grep -v /vendor/)
