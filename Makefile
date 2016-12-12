@@ -10,7 +10,7 @@ export PROJECT_PATH = /go/src/github.com/appleboy/go-hello
 DIST := dist
 EXECUTABLE := gorush
 
-TARGETS ?= linux darwin
+TARGETS ?= linux darwin windows
 PACKAGES ?= $(shell go list ./... | grep -v /vendor/)
 SOURCES ?= $(shell find . -name "*.go" -type f)
 TAGS ?=
