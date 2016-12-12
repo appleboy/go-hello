@@ -61,7 +61,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
   facebook:
     image: appleboy/drone-facebook
@@ -70,7 +70,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
   gtalk_1:
     image: appleboy/drone-gtalk
@@ -81,7 +81,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
   gtalk_2:
     image: appleboy/drone-gtalk
@@ -94,7 +94,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
   telegram_1:
     image: appleboy/drone-telegram
@@ -103,7 +103,7 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
   telegram_2:
     image: appleboy/drone-telegram
@@ -116,7 +116,17 @@ pipeline:
     when:
       status: [ success, failure ]
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
+
+  # github:
+  #   image: plugins/github-release
+  #   files:
+  #     - dist/release/*
+  #   when:
+  #     event: [ tag ]
+  #     branch: [ refs/tags/* ]
+  #     matrix:
+  #       GO_VERSION: 1.7.4
 
   # rebuild the cache on the sftp server
   rebuild_cache:
@@ -127,12 +137,12 @@ pipeline:
     when:
       branch: master
       matrix:
-        GO_VERSION: 1.7.3
+        GO_VERSION: 1.7.4
 
 workspace:
   path: /go/src/github.com/appleboy/go-hello
 
 matrix:
   GO_VERSION:
-    - 1.7.3
-    - 1.6.3
+    - 1.7.4
+    - 1.6.4
