@@ -2,6 +2,7 @@ pipeline:
   # restore the cache from an sftp server
   restore_cache:
     image: appleboy/drone-sftp-cache
+    pull: true
     restore: true
     mount: [ .glide, vendor ]
     ignore_branch: true
@@ -132,6 +133,7 @@ pipeline:
   # rebuild the cache on the sftp server
   rebuild_cache:
     image: appleboy/drone-sftp-cache
+    pull: true
     rebuild: true
     mount: [ .glide, vendor ]
     ignore_branch: true
