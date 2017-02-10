@@ -1,4 +1,8 @@
 pipeline:
+  clone:
+    image: plugins/git
+    tags: true
+
   # restore the cache from an sftp server
   restore_cache:
     image: appleboy/drone-sftp-cache
@@ -13,6 +17,7 @@ pipeline:
     environment:
       - GOPATH=/go
     commands:
+      - echo ${DRONE_TAG}
       - glide install
       - coverage all
       - make release
