@@ -1,24 +1,18 @@
-pipeline:
-  clone:
+workspace:
+  base: /go/src
+  path: github.com/appleboy/go-spgateway
+
+clone:
+  git:
     image: plugins/git
+    depth: 50
     tags: true
 
-  # restore the cache from an sftp server
-  restore_cache:
-    image: appleboy/drone-sftp-cache
-    pull: true
-    restore: true
-    mount: [ .glide, vendor ]
-    ignore_branch: true
-
+pipeline:
   build:
-    image: appleboy/golang-testing:${GO_VERSION}
+    image: appleboy/golang-testing
     pull: true
-    environment:
-      - GOPATH=/go
     commands:
-      - echo ${DRONE_TAG}
-      - glide install
       - coverage all
       - make release
 
@@ -67,8 +61,6 @@ pipeline:
     to: U77234666b0313021f873b85de44209de
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   facebook:
     image: appleboy/drone-facebook
@@ -76,8 +68,6 @@ pipeline:
     to: 1234973386524610
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   gtalk_1:
     image: appleboy/drone-gtalk
@@ -87,8 +77,6 @@ pipeline:
       - appleboy.tw@gmail.com:test@gmail.com
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   gtalk_2:
     image: appleboy/drone-gtalk
@@ -100,8 +88,6 @@ pipeline:
       - appleboy.tw@gmail.com
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   telegram_1:
     image: appleboy/drone-telegram
@@ -109,8 +95,6 @@ pipeline:
     to: 65382999:appleboy.tw@gmail.com
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   telegram_2:
     image: appleboy/drone-telegram
@@ -122,8 +106,6 @@ pipeline:
     message: "Please don't send duplicate of message"
     when:
       status: [ success, failure ]
-      matrix:
-        GO_VERSION: 1.7.4
 
   github:
     image: plugins/github-release
@@ -132,25 +114,3 @@ pipeline:
     when:
       event: [ tag ]
       branch: [ refs/tags/* ]
-      matrix:
-        GO_VERSION: 1.7.4
-
-  # rebuild the cache on the sftp server
-  rebuild_cache:
-    image: appleboy/drone-sftp-cache
-    pull: true
-    rebuild: true
-    mount: [ .glide, vendor ]
-    ignore_branch: true
-    when:
-      branch: master
-      matrix:
-        GO_VERSION: 1.7.4
-
-workspace:
-  path: /go/src/github.com/appleboy/go-hello
-
-matrix:
-  GO_VERSION:
-    - 1.7.4
-    - 1.6.4
