@@ -1,13 +1,14 @@
 package main
 
 import (
+	"net/http"
+	"testing"
+	"time"
+
 	"github.com/appleboy/gofight"
 	"github.com/buger/jsonparser"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
-	"net/http"
-	"testing"
-	"time"
 )
 
 func TestGinHelloWorld(t *testing.T) {

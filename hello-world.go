@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
-	"github.com/gin-gonic/gin"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 func rootHandler(context *gin.Context) {
