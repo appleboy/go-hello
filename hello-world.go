@@ -7,10 +7,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func rootHandler(context *gin.Context) {
+func rootHandler(c *gin.Context) {
 	currentTime := time.Now()
 	currentTime.Format("20060102150405")
-	context.JSON(200, gin.H{
+	c.JSON(200, gin.H{
 		"current_time": currentTime,
 		"text":         "Hello World",
 	})
