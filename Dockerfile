@@ -1,6 +1,6 @@
-FROM golang:1.9-alpine3.6
+FROM golang:1.9.1-alpine3.6
 
-MAINTAINER Bo-Yi Wu <appleboy.tw@gmail.com>
+LABEL maintainer="Bo-Yi Wu <appleboy.tw@gmail.com>"
 
 ADD . /go/src/github.com/appleboy/go-hello
 
