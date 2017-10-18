@@ -11,6 +11,7 @@ pipeline:
     commands:
       - coverage all
       - make release
+      - echo Done
 
   # notify_1:
   #   pull: true
