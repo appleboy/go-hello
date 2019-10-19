@@ -1,4 +1,4 @@
 language: go
 
 script:
-  - sleep 300
+  - sleep 400
