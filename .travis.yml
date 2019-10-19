@@ -1,0 +1,4 @@
+language: go
+
+script:
+  - sleep 20
